@@ -1,0 +1,259 @@
+/*
+ * angular-deckgrid-demo
+ *
+ * Copyright(c) 2013 André König <akoenig@posteo.de>
+ * MIT Licensed
+ *
+ */
+
+/**
+ * @author André König (andre.koenig@posteo.de)
+ *
+ */
+
+body {
+    background:rgba(0, 0, 0, .04);
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom:50px;
+}
+
+a {
+    color:#000;
+    text-decoration:none;
+}
+
+a:visited {
+    color:rgba(0, 0, 0, .5);
+}
+
+h1 {
+    font-size:320%;
+    margin-bottom:30px;
+}
+
+h2 {
+    opacity:.8;
+}
+
+p {
+    font-size:80%;
+    opacity:.5;
+}
+
+h1, h2, h3, h4 {
+    font-weight:100;
+    margin:0;
+    padding:0;
+}
+
+img {
+    height:auto;
+    max-width:100%;
+}
+
+.animation-fade {
+    opacity:0;
+}
+
+.animation-faded {
+    opacity:1;
+}
+
+.animation-faded {
+   -webkit-transition: opacity 1s linear .2s;
+   -moz-transition: opacity 1s linear .2s;
+   -o-transition: opacity 1s linear .2s;
+   transition: opacity 1s linear .2s;
+}
+
+.balloon-wrapper {
+    padding-top:30px;
+    opacity:1;
+    text-align:center;
+}
+
+.balloon {
+    background:#3498db;
+    border-radius:50%;
+    display:inline-block;
+    font-size:160%;
+    text-align:center;
+    height:100px;
+    line-height:100px;
+    width:100px;
+}
+
+.button {
+    border:3px solid #000;
+    border-radius:8px;
+    color:#000;
+    display:inline-block;
+    opacity:.6;
+    padding:15px 25px;
+    -webkit-transition: opacity .4s linear 0s;
+    -moz-transition: opacity .4s linear 0s;
+    -o-transition: opacity .4s linear 0s;
+    transition: opacity .4s linear 0s;
+}
+
+.button:hover {
+    opacity:1;
+}
+
+.image-round {
+    border-radius:50%;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.l-header {
+    margin-top:180px;
+    text-align:center;
+}
+
+.l-navigation {
+    margin-top:60px;
+    text-align:center;
+}
+
+.l-footer {
+    bottom:10px;
+    position:fixed;
+    right:10px;
+    text-align:right;
+    width:50px;
+}
+
+.l-footer small {
+    display:block;
+    font-size:60%;
+    margin-bottom:5px;
+    opacity:.5;
+    text-align:center;
+    width:100%;
+}
+
+.deckgrid {
+    margin:100px auto;
+    padding:10px;
+    width:1000px;
+}
+
+.deckgrid[deckgrid]::before {
+    content: '5 .column.size-1-5';
+    font-size: 0;
+    visibility:hidden;
+}
+
+.deckgrid .column {
+    float:left;
+}
+
+.photo {
+    background:#fff url(images/spinner.gif) center 30px no-repeat;
+    border:1px solid rgba(0, 0, 0, .15);
+    border-radius:3px;
+    margin:0 10px 10px 0;
+    position:relative;
+}
+
+.photo .photo-index {
+    background:rgba(0, 0, 0, .9);
+    color:#fff;
+    position:absolute;
+    height:100%;
+    text-align:center;
+    width:100%;
+    z-index:99;
+}
+
+.photo .photo-index p:first-child {
+    margin-top:10px;
+}
+
+.photo .photo-wrapper {
+    min-height:60px;
+}
+
+.photo .photo-description {
+    padding:15px;
+}
+
+.deckgrid .column.size-1-5 {
+    width:200px;
+}
+
+.deckgrid .column.size-1-4 {
+    width:200px;
+}
+
+.deckgrid .column.size-1-3 {
+    width:250px;
+}
+
+.deckgrid .column.size-1-2 {
+    width:250px;
+}
+
+.deckgrid .column.size-1-1 {
+    width:280px;
+}
+
+@media screen and (max-width: 1000px) {
+    .deckgrid {
+        width:800px;
+    }
+
+    .deckgrid[deckgrid]::before {
+        content: '4 .column.size-1-4';
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .deckgrid {
+        width:760px;
+    }
+
+    .deckgrid[deckgrid]::before {
+        content: '3 .column.size-1-3';
+    }
+}
+
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .deckgrid {
+        margin:100px auto;
+        width:500px;
+    }
+
+    .deckgrid[deckgrid]::before {
+        content: '2 .column.size-1-2';
+    }
+}
+
+@media only screen and (max-device-width : 320px),
+       only screen and (max-width : 480px) {
+
+    .l-header {
+        font-size:80%;
+        margin-top:145px;
+        padding:5px;
+        text-align:center;
+    }
+
+    .deckgrid {
+        width:280px;
+    }
+
+    .deckgrid[deckgrid]::before {
+        content: '1 .column.size-1-1';
+    }
+}

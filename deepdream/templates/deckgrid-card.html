@@ -1,0 +1,25 @@
+<div class="photo">
+
+    <a href="" data-ng-click="card.showIndex = !card.showIndex">
+        <div class="photo-index" data-ng-if="card.showIndex" style="word-wrap:break-word;">
+            <p>
+            {{card.src}}</p>
+
+            <p class="balloon-wrapper">
+              <a ng-href="{{card.src}}">
+                <span class="balloon">bird</span>
+                </ap>
+            </p>
+        </div>
+
+        <div class="photo-wrapper">
+            <img src="" data-ng-src="{{card.src}}" class="animation-fade" data-imageloaded data-loadedclass="animation-faded">
+        </div>
+
+
+        <div class="photo-description">
+            <h3>{{card.name}}</h3>
+            <p>Nice photo, eh.</p>
+        </div>
+    </a>
+</div>
