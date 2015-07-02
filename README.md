@@ -27,14 +27,38 @@ cloud, then read on.
 
 We will be monitoring the `inputs` directory for source images and
 dumping results into the `outputs` directory.  Additionally, there is a
-simple http server running on port 80 which servers the resulting
+simple http server running on port 80 which server the resulting
 images.
 
-``` 
+Prerequisite:
+
+You've launched a Cloud instance using a VPS provider like
+DigitalOcean.  If you don't know about DigitalOcean, then you should
+give them a try.  You can lauch a Docker-ready cloud instance in a few
+minutes.  If you're going to set up a new DigitalOcean account,
+consider using my referral link:
+[https://www.digitalocean.com/?refcode=64f90f652091](https://www.digitalocean.com/?refcode=64f90f652091).
+
+Let's say our cloud instance is at the address 1.2.3.4
+
+```
+ssh root@1.2.3.4
+git clone https://github.com/VISIONAI/clouddream.git
 ./start.sh
 ```
 
-### Default parameters
+Then from your local machine you can just scp images into the `inputs`
+directory inside deepdream as follows:
+
+```
+#From your local machine
+scp "images/*jpg" root@1.2.3.4:~/clouddream/deepdream/inputs/
+```
+
+You should now be able to visit `http://1.2.3.4` in your browser and
+see the resulting images appear one by one.
+
+### Changing the default parameters
 Inside deepdream.py you'll notice that I'm using
 
 ```python
@@ -54,7 +78,7 @@ jpeg images, or you can scp them from you local machine.
 
 I applied this demo to all of the images in the PASCAL VOC 2011
 dataset.  You can find the resulting images on the
-[deepdream.vision.ai](https://deepdream.vision.ai) server.
+[deepdream.vision.ai](http://deepdream.vision.ai) server.
 
 ### Credits
 
