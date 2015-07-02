@@ -24,6 +24,10 @@ The compilation procedure was done on Docker Hub and the final image can be pull
 docker pull visionai/clouddream
 ```
 
+The docker image is 2.5GB, but it contains a precompiled version of
+Caffe, all of the python dependencies, as well as the pretrained
+GoogLeNet model.
+
 For those of you who are new to Docker, I hope you will pick up some
 valuable engineering skills and tips along the way. Docker makes it very easy
 to bundle complex software.  If you're somebody like me who likes a
@@ -34,7 +38,7 @@ cloud, then read on.
 
 We will be monitoring the `inputs` directory for source images and
 dumping results into the `outputs` directory.  Additionally, there is a
-simple http server running on port 80 which server the resulting
+simple Python-based HTTP server running on port 80 which server the resulting
 images.
 
 Prerequisite:
