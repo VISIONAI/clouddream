@@ -5,18 +5,21 @@ Google recently released the
 which uses the Caffe Deep Learning Library and all of the code runs in
 an iPython notebook.
 
+But setting up Caffe, python, and all of the required dependencies is
+not trivial if you haven't done it before!
+
 So let's make it brain-dead simple to launch your very own
 deepdreaming server (in the cloud, on an Ubuntu machine, Mac via
 Docker, and maybe even Windows if you try out Kitematic by Docker)!
 
 ### Motivation
 
-Because the installation procedure
-for [Caffe](http://caffe.berkeleyvision.org/) is not trivial, I
-decided to create a self-contained Caffe/deepdream Docker image which has everything
-you need to generate your own deepdream art. In order to make the
-image very portable, it uses the CPU version of Caffe and comes
-bundled with the GoogLeNet model.
+Because the installation procedure for
+[Caffe](http://caffe.berkeleyvision.org/) is not trivial, I decided to
+create a self-contained Caffe/deepdream Docker image which has
+everything you need to generate your own deepdream art. In order to
+make the Docker image very portable, it uses the CPU version of Caffe
+and comes bundled with the GoogLeNet model.
 
 The compilation procedure was done on Docker Hub and the final image can be pulled down via
 
@@ -37,9 +40,9 @@ cloud, then read on.
 # Instructions for use
 
 We will be monitoring the `inputs` directory for source images and
-dumping results into the `outputs` directory.  Additionally, there is a
-simple Python-based HTTP server running on port 80 which server the resulting
-images.
+dumping results into the `outputs` directory.  Nginx (also inside a
+Docker container) will be used to serve the resulting files and a
+simple GUI to render them in a webpage.
 
 Prerequisite:
 
@@ -90,6 +93,10 @@ jpeg images, or you can scp them from you local machine.
 I applied this demo to all of the images in the PASCAL VOC 2011
 dataset.  You can find the resulting images on the
 [deepdream.vision.ai](http://deepdream.vision.ai) server.
+
+### The GUI
+
+The final GUI is based on https://github.com/akoenig/angular-deckgrid.
 
 ### Credits
 
