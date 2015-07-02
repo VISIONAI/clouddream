@@ -1,9 +1,7 @@
 #!/bin/sh
-# simple script to process all of the images inside the inputs/ folder
-
-#Start a webserver at port 80 serving the output images
-cd /opt/deepdream/outputs/
-python -mSimpleHTTPServer 80 2>&1 > ../access.log &
+# Simple script to process all of the images inside the inputs/ folder
+# We will be running this script inside the visionai/clouddream Docker image
+# Copyright vision.ai, 2015
 
 cd /opt/deepdream
 
