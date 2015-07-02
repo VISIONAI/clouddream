@@ -6,7 +6,8 @@ which uses the Caffe Deep Learning Library and all of the code runs in
 an iPython notebook.
 
 So let's make it brain-dead simple to launch your very own
-deepdreaming server in the cloud!
+deepdreaming server (in the cloud, on an Ubuntu machine, Mac via
+Docker, and maybe even Windows if you try out Kitematic by Docker)!
 
 ### Motivation
 
@@ -17,8 +18,14 @@ you need to generate your own deepdream art. In order to make the
 image very portable, it uses the CPU version of Caffe and comes
 bundled with the GoogLeNet model.
 
+The compilation procedure was done on Docker Hub and the final image can be pulled down via
+
+```
+docker pull visionai/clouddream
+```
+
 For those of you who are new to Docker, I hope you will pick up some
-valuable engineering skills along the way. Docker makes it very easy
+valuable engineering skills and tips along the way. Docker makes it very easy
 to bundle complex software.  If you're somebody like me who likes a
 clean Mac OS X on a personal laptop, and do the heavy-lifting in the
 cloud, then read on.
@@ -33,10 +40,10 @@ images.
 Prerequisite:
 
 You've launched a Cloud instance using a VPS provider like
-DigitalOcean.  If you don't know about DigitalOcean, then you should
-give them a try.  You can lauch a Docker-ready cloud instance in a few
-minutes.  If you're going to set up a new DigitalOcean account,
-consider using my referral link:
+DigitalOcean and this instance has Docker running. If you don't know
+about DigitalOcean, then you should give them a try.  You can lauch a
+Docker-ready cloud instance in a few minutes.  If you're going to set
+up a new DigitalOcean account, consider using my referral link:
 [https://www.digitalocean.com/?refcode=64f90f652091](https://www.digitalocean.com/?refcode=64f90f652091).
 
 Let's say our cloud instance is at the address 1.2.3.4
