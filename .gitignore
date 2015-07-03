@@ -2,6 +2,6 @@ tmp
 inputs
 outputs
 tmp.prototxt
-access.log
+log.html
 input.jpg
 output.jpg
