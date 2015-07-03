@@ -90,15 +90,23 @@ def deepdream(net, base_img, iter_n=10, octave_n=4, octave_scale=1.4, end='incep
     # returning the resulting image
     return deprocess(net, src.data[0])
 
-img = np.float32(PIL.Image.open('input.jpg'))
-#showarray(img)
+basewidth = 300
+img = PIL.Image.open('input.jpg')
+width = img.size[0]
+
+if width > basewidth:
+    wpercent = (basewidth/float(img.size[0]))
+    hsize = int((float(img.size[1])*float(wpercent)))
+    img = img.resize((basewidth,hsize), PIL.Image.ANTIALIAS)
+
+img = np.float32(img)
 
 frame = img
 #frame_i = 0
 
-#frame = deepdream(net, frame)
+frame = deepdream(net, frame)
 #frame = deepdream(net, img, end='inception_3b/5x5_reduce')
-frame = deepdream(net, img, end='conv2/3x3')
+#frame = deepdream(net, img, end='conv2/3x3')
 
 PIL.Image.fromarray(np.uint8(frame)).save("output.jpg")
 
