@@ -8,14 +8,12 @@ cd /opt/deepdream
 while [ true ];
 do
     cd /opt/deepdream/inputs
-    FILES=`ls *`
-    cd - 2>&1 /dev/null
-    for f in ${FILES};
+    find . -type f -print0 | while read -d $'\0' f
     do
-	echo File is $f
+	cd /opt/deepdream
 	if [ -e outputs/${f} ];
 	then
-	    echo "File already processed"
+	    echo "File ${f} already processed"
 	else
 	    echo "Deepdream" ${f}
 	    chmod gou+r inputs/${f}
@@ -25,6 +23,7 @@ do
 	    echo "Error Code is" ${ERROR_CODE}
 	    cp output.jpg outputs/${f}
 	    rm output.jpg
+	    echo "Just created" outputs/${f}
 	fi
     done
     sleep 1
