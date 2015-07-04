@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Simple script to process all of the images inside the inputs/ folder
 # We will be running this script inside the visionai/clouddream Docker image
 # Copyright vision.ai, 2015
@@ -8,7 +8,7 @@ cd /opt/deepdream
 while [ true ];
 do
     cd /opt/deepdream/inputs
-    find . -type f -print0 | while read -d $'\0' f
+    find . -type f -not -path '*/\.*' -print0 | while read -d $'\0' f;
     do
 	cd /opt/deepdream
 	if [ -e outputs/${f} ];

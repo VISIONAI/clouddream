@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Simple script to make an images.json file from the contents of all files
 # inside the outputs/ directory
 #
@@ -16,17 +16,20 @@ cd outputs
 rm ../temp.json 2>/dev/null
 echo -n "[" > ../temp.json
 
-files=`ls * 2>/dev/null`
-nfiles=`ls * 2>/dev/null | wc -l`
+nfiles=`find . -type f -not -path '*/\.*' | wc -l`
+echo nf is $nfiles
+
 counter=1
-for f in $files;
+find . -type f -not -path '*/\.*' -print0 | while read -d $'\0' f;
 do
     id=$counter
-    name=$f
-    src="/outputs/$f"
+    name=`basename $f`
+    src="/outputs/$name"
     echo -n "{\"id\":\"$id\",\"name\":\"$name\",\"src\":\"$src\"}" >> ../temp.json
     if [ "$id" != "$nfiles" ]; then
 	echo -n "," >> ../temp.json
+    else
+	echo "skipping trailing one"
     fi
     counter=`expr $counter + 1`
 done
