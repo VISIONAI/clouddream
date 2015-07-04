@@ -41,7 +41,7 @@ to bundle complex software. If you're somebody like me who likes a
 clean Mac OS X on a personal laptop, and do the heavy-lifting in the
 cloud, then read on.
 
-# Instructions for use
+# Instructions
 
 We will be monitoring the `inputs` directory for source images and
 dumping results into the `outputs` directory.  Nginx (also inside a
@@ -103,6 +103,23 @@ directory inside deepdream as follows:
 #From your local machine
 scp "images/*jpg" root@1.2.3.4:~/clouddream/deepdream/inputs/
 ```
+
+## Processing a YouTube video
+
+If don't have your own source of cool jpg images to process, or simply
+want to see what the output looks like on a youtube video, I've
+included a short `youtube.sh` script which does all the work for you.
+
+If you want to start processing the "Charlie Bit My Finger" video, simply run:
+```
+./youtube.sh https://www.youtube.com/watch?v=DDZQAJuB3rI
+```
+
+And then visit the `http://1.2.3.4:8000` URL to see the frames show up
+as they are being processed one by one. The final result will be
+writen to `http://1.2.3.4/out.mp4`
+
+## Navigating the Image Gallery
 
 You should now be able to visit `http://1.2.3.4` in your browser and
 see the resulting images appear in a nicely formatted mobile-ready grid.
