@@ -20,7 +20,7 @@ do
 	    echo "Deepdream" ${f}
 	    cp inputs/${f} input.jpg
 	    echo "pwd is" `pwd`
-	    python deepdream_single.py
+	    python deepdream.py
 	    cp output.jpg  outputs/${f}
 	fi
     done

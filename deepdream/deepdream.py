@@ -3,6 +3,7 @@ from cStringIO import StringIO
 import numpy as np
 import scipy.ndimage as nd
 import PIL.Image
+import json
 from IPython.display import clear_output, Image, display
 from google.protobuf import text_format
 
@@ -13,6 +14,11 @@ def showarray(a, fmt='jpeg'):
     f = StringIO()
     PIL.Image.fromarray(a).save(f, fmt)
     display(Image(data=f.getvalue()))
+
+with open("settings.json") as json_file:
+    json_data = json.load(json_file)
+    #print()
+
 
 model_path = '../caffe/models/bvlc_googlenet/' # substitute your path here
 net_fn   = model_path + 'deploy.prototxt'
@@ -90,21 +96,22 @@ def deepdream(net, base_img, iter_n=10, octave_n=4, octave_scale=1.4, end='incep
     # returning the resulting image
     return deprocess(net, src.data[0])
 
-basewidth = 300
+
+maxwidth = json_data['maxwidth']
 img = PIL.Image.open('input.jpg')
 width = img.size[0]
 
-if width > basewidth:
-    wpercent = (basewidth/float(img.size[0]))
+if width > maxwidth:
+    wpercent = (maxwidth/float(img.size[0]))
     hsize = int((float(img.size[1])*float(wpercent)))
-    img = img.resize((basewidth,hsize), PIL.Image.ANTIALIAS)
+    img = img.resize((maxwidth,hsize), PIL.Image.ANTIALIAS)
 
 img = np.float32(img)
 
 frame = img
 #frame_i = 0
 
-frame = deepdream(net, frame)
+frame = deepdream(net, frame, end=json_data['layer'])
 #frame = deepdream(net, img, end='inception_3b/5x5_reduce')
 #frame = deepdream(net, img, end='conv2/3x3')
 
