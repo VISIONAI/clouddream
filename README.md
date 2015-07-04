@@ -119,6 +119,13 @@ And then visit the `http://1.2.3.4:8000` URL to see the frames show up
 as they are being processed one by one. The final result will be
 writen to `http://1.2.3.4/out.mp4`
 
+Here are some frames from the
+[Daft Punk - Pentatonix](https://www.youtube.com/watch?v=3MteSlpxCpo)
+video:
+
+![deepdreaming Pentatonix](https://raw.githubusercontent.com/VISIONAI/clouddream/master/deepdream_vision_ai_screenshot3.png)
+
+
 ## Navigating the Image Gallery
 
 You should now be able to visit `http://1.2.3.4` in your browser and
