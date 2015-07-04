@@ -1,5 +1,5 @@
 #!/bin/sh
-# Simple script to make an images.json file from the contents of all images
+# Simple script to make an images.json file from the contents of all files
 # inside the outputs/ directory
 #
 # Generate a json file from a directory listing so that it can be consumed by
@@ -13,25 +13,25 @@ make_json () {
 
 cd outputs
 
-rm temp.json 2>/dev/null
-echo -n "[" > temp.json
+rm ../temp.json 2>/dev/null
+echo -n "[" > ../temp.json
 
-files=`ls *jpg 2>/dev/null`
-nfiles=`ls *jpg 2>/dev/null | wc -l`
+files=`ls * 2>/dev/null`
+nfiles=`ls * 2>/dev/null | wc -l`
 counter=1
 for f in $files;
 do
     id=$counter
     name=$f
     src="/outputs/$f"
-    echo -n "{\"id\":\"$id\",\"name\":\"$name\",\"src\":\"$src\"}" >> temp.json
+    echo -n "{\"id\":\"$id\",\"name\":\"$name\",\"src\":\"$src\"}" >> ../temp.json
     if [ "$id" != "$nfiles" ]; then
-	echo -n "," >> temp.json
+	echo -n "," >> ../temp.json
     fi
     counter=`expr $counter + 1`
 done
-echo -n "]" >> temp.json
-mv temp.json images.json
+echo -n "]" >> ../temp.json
+mv ../temp.json ../images.json
 
 cd - 2>&1 /dev/null
 echo "Finished processing " `expr $counter - 1` "files"

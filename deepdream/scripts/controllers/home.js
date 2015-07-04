@@ -21,7 +21,7 @@ angular.module('akoenig.deckgrid.demo').controller('HomeController', [
 
         'use strict';
 
-      var url = '/outputs/images.json';
+      var url = '/images.json';
       //var url = 'http://deepdream.vision.ai/images.json';
 
 
