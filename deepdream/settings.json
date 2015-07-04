@@ -1,1 +1,4 @@
-{"maxwidth":400,"layer":"inception_4c/output"}
+{
+    "maxwidth" : 400,
+    "layer" : "inception_4c/output"
+}
