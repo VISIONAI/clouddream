@@ -27,12 +27,13 @@ angular.module('akoenig.deckgrid.demo').controller('HomeController', [
 
       var searchObject = $location.search();
       //console.log('searchObj is',searchObject);
-      var N = searchObject.N || 8;
-      N = Math.max(Math.min(N,20),1);
+      var N = searchObject.N || 20;
+      N = Math.max(Math.min(N,100),1);
       
       $http.get(url).success(function(data) {
         if (searchObject.latest) {
           $scope.photos = data.slice(-N);
+	  $scope.photos = $scope.photos.reverse();
         } else {
           $scope.photos = _.sample(data,N);
         }
