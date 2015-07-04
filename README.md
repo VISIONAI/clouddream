@@ -103,7 +103,7 @@ directory inside deepdream as follows:
 
 ```
 #From your local machine
-scp "images/*jpg" root@1.2.3.4:~/clouddream/deepdream/inputs/
+scp images/*jpg root@1.2.3.4:~/clouddream/deepdream/inputs/
 ```
 
 ## Processing a YouTube video
