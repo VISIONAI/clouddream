@@ -99,17 +99,173 @@ Additionally, you can browse some more cool images on the
 currently configured to run deepdream through some Dali art. When you
 go to the page, just hit refresh to see more goodies.
 
-### Changing the default parameters
-Inside deepdream.py you'll notice that I'm using
+### Changing image size and processing layer
 
-```python
-frame = deepdream(net, img, end='conv2/3x3')
+Inside deepdream/settings.json you'll find a settings file that looks like this:
+```javascript
+{
+    "maxwidth" : 400,
+    "layer" : "inception_4c/output"
+}
 ```
 
-But you can try different layers such as:
+You can change `maxwidth` to something larger like 1000 if you want
+big output images for big input images.  For testing `maxwidth` of 200
+will give you results much faster.  If you change the settings and
+want to regenerate outputs for your input images, simply remove the
+contents of the outputs directory:
 
-```python
-frame = deepdream(net, img, end='inception_3b/5x5_reduce')
+```
+rm deepdream/outputs/*
+```
+
+Possible values for `layer` are as follows. They come from the
+tmp.prototxt file which lists the layers of the GoogLeNet network used
+in this demo.
+
+```
+"conv1/7x7_s2"
+"conv1/relu_7x7"
+"pool1/3x3_s2"
+"pool1/norm1"
+"conv2/3x3_reduce"
+"conv2/relu_3x3_reduce"
+"conv2/3x3"
+"conv2/relu_3x3"
+"conv2/norm2"
+"pool2/3x3_s2"
+"inception_3a/1x1"
+"inception_3a/relu_1x1"
+"inception_3a/3x3_reduce"
+"inception_3a/relu_3x3_reduce"
+"inception_3a/3x3"
+"inception_3a/relu_3x3"
+"inception_3a/5x5_reduce"
+"inception_3a/relu_5x5_reduce"
+"inception_3a/5x5"
+"inception_3a/relu_5x5"
+"inception_3a/pool"
+"inception_3a/pool_proj"
+"inception_3a/relu_pool_proj"
+"inception_3a/output"
+"inception_3b/1x1"
+"inception_3b/relu_1x1"
+"inception_3b/3x3_reduce"
+"inception_3b/relu_3x3_reduce"
+"inception_3b/3x3"
+"inception_3b/relu_3x3"
+"inception_3b/5x5_reduce"
+"inception_3b/relu_5x5_reduce"
+"inception_3b/5x5"
+"inception_3b/relu_5x5"
+"inception_3b/pool"
+"inception_3b/pool_proj"
+"inception_3b/relu_pool_proj"
+"inception_3b/output"
+"pool3/3x3_s2"
+"inception_4a/1x1"
+"inception_4a/relu_1x1"
+"inception_4a/3x3_reduce"
+"inception_4a/relu_3x3_reduce"
+"inception_4a/3x3"
+"inception_4a/relu_3x3"
+"inception_4a/5x5_reduce"
+"inception_4a/relu_5x5_reduce"
+"inception_4a/5x5"
+"inception_4a/relu_5x5"
+"inception_4a/pool"
+"inception_4a/pool_proj"
+"inception_4a/relu_pool_proj"
+"inception_4a/output"
+"inception_4b/1x1"
+"inception_4b/relu_1x1"
+"inception_4b/3x3_reduce"
+"inception_4b/relu_3x3_reduce"
+"inception_4b/3x3"
+"inception_4b/relu_3x3"
+"inception_4b/5x5_reduce"
+"inception_4b/relu_5x5_reduce"
+"inception_4b/5x5"
+"inception_4b/relu_5x5"
+"inception_4b/pool"
+"inception_4b/pool_proj"
+"inception_4b/relu_pool_proj"
+"inception_4b/output"
+"inception_4c/1x1"
+"inception_4c/relu_1x1"
+"inception_4c/3x3_reduce"
+"inception_4c/relu_3x3_reduce"
+"inception_4c/3x3"
+"inception_4c/relu_3x3"
+"inception_4c/5x5_reduce"
+"inception_4c/relu_5x5_reduce"
+"inception_4c/5x5"
+"inception_4c/relu_5x5"
+"inception_4c/pool"
+"inception_4c/pool_proj"
+"inception_4c/relu_pool_proj"
+"inception_4c/output"
+"inception_4d/1x1"
+"inception_4d/relu_1x1"
+"inception_4d/3x3_reduce"
+"inception_4d/relu_3x3_reduce"
+"inception_4d/3x3"
+"inception_4d/relu_3x3"
+"inception_4d/5x5_reduce"
+"inception_4d/relu_5x5_reduce"
+"inception_4d/5x5"
+"inception_4d/relu_5x5"
+"inception_4d/pool"
+"inception_4d/pool_proj"
+"inception_4d/relu_pool_proj"
+"inception_4d/output"
+"inception_4e/1x1"
+"inception_4e/relu_1x1"
+"inception_4e/3x3_reduce"
+"inception_4e/relu_3x3_reduce"
+"inception_4e/3x3"
+"inception_4e/relu_3x3"
+"inception_4e/5x5_reduce"
+"inception_4e/relu_5x5_reduce"
+"inception_4e/5x5"
+"inception_4e/relu_5x5"
+"inception_4e/pool"
+"inception_4e/pool_proj"
+"inception_4e/relu_pool_proj"
+"inception_4e/output"
+"pool4/3x3_s2"
+"inception_5a/1x1"
+"inception_5a/relu_1x1"
+"inception_5a/3x3_reduce"
+"inception_5a/relu_3x3_reduce"
+"inception_5a/3x3"
+"inception_5a/relu_3x3"
+"inception_5a/5x5_reduce"
+"inception_5a/relu_5x5_reduce"
+"inception_5a/5x5"
+"inception_5a/relu_5x5"
+"inception_5a/pool"
+"inception_5a/pool_proj"
+"inception_5a/relu_pool_proj"
+"inception_5a/output"
+"inception_5b/1x1"
+"inception_5b/relu_1x1"
+"inception_5b/3x3_reduce"
+"inception_5b/relu_3x3_reduce"
+"inception_5b/3x3"
+"inception_5b/relu_3x3"
+"inception_5b/5x5_reduce"
+"inception_5b/relu_5x5_reduce"
+"inception_5b/5x5"
+"inception_5b/relu_5x5"
+"inception_5b/pool"
+"inception_5b/pool_proj"
+"inception_5b/relu_pool_proj"
+"inception_5b/output"
+"pool5/7x7_s1"
+"pool5/drop_7x7_s1"
+"loss3/classifier"
+"prob"
 ```
 
 ### The GUI
