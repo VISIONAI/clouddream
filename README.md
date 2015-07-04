@@ -67,7 +67,36 @@ cd clouddream
 ./start.sh
 ```
 
-Then from your local machine you can just scp images into the `inputs`
+To make sure everything is working properly you can do 
+```
+docker ps
+```
+
+You should see three running containers: deepdream-json, deepdream-compute, and deepdream-files
+```
+root@deepdream:~/clouddream# docker ps
+CONTAINER ID        IMAGE                 COMMAND                CREATED             STATUS              PORTS                         NAMES
+21d495211abf        ubuntu:14.04          "/bin/bash -c 'cd /o   7 minutes ago       Up 7 minutes                                      deepdream-json
+7dda17dafa5a        visionai/clouddream   "/bin/bash -c 'cd /o   7 minutes ago       Up 7 minutes                                      deepdream-compute
+010427d8c7c2        nginx                 "nginx -g 'daemon of   7 minutes ago       Up 7 minutes        0.0.0.0:80->80/tcp, 443/tcp   deepdream-files
+```
+
+If you want to stop the processing, just run:
+```
+./stop.sh
+```
+
+If you want to jump inside the container to debug something, just run:
+```
+./enter.sh
+cd /opt/deepdream
+python deepdream.py
+#This will take input.jpg, run deepdream, and write output.jpg
+```
+
+## Feeding images into deepdream
+
+From your local machine you can just scp images into the `inputs`
 directory inside deepdream as follows:
 
 ```
@@ -87,6 +116,22 @@ And instead of showing random `N` images, you can view the latest images:
 ```
 http://1.2.3.4/#/?latest
 ```
+
+You can view the processing log here:
+```
+http://1.2.3.4/log.html
+```
+
+You can view the current image being processed:
+```
+http://1.2.3.4/image.jpg
+```
+
+You can view the current settings:
+```
+http://1.2.3.4/settings.json
+```
+
 
 Here is a screenshot of what things should look like when using the 'conv2/3x3' setting:
 ![deepdreaming Dali](https://raw.githubusercontent.com/VISIONAI/clouddream/master/deepdream_vision_ai_screenshot.png)
