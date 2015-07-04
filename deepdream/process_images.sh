@@ -8,8 +8,8 @@ cd /opt/deepdream
 while [ true ];
 do
     cd /opt/deepdream/inputs
-    FILES=`ls *jpg`
-    cd - 2> /dev/null
+    FILES=`ls *`
+    cd - 2>&1 /dev/null
     for f in ${FILES};
     do
 	echo File is $f
@@ -18,10 +18,13 @@ do
 	    echo "File already processed"
 	else
 	    echo "Deepdream" ${f}
+	    chmod gou+r inputs/${f}
 	    cp inputs/${f} input.jpg
-	    echo "pwd is" `pwd`
 	    python deepdream.py
-	    cp output.jpg  outputs/${f}
+	    ERROR_CODE=$?
+	    echo "Error Code is" ${ERROR_CODE}
+	    cp output.jpg outputs/${f}
+	    rm output.jpg
 	fi
     done
     sleep 1
