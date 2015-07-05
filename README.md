@@ -57,6 +57,8 @@ Docker-ready cloud instance in a few minutes.  If you're going to set
 up a new DigitalOcean account, consider using my referral link:
 [https://www.digitalocean.com/?refcode=64f90f652091](https://www.digitalocean.com/?refcode=64f90f652091).
 
+Will need an instance with at least 1GB of RAM for processing small output images.
+
 Let's say our cloud instance is at the address 1.2.3.4 and we set it
 up so that it contains our SSH key for passwordless log-in.
 
@@ -101,7 +103,7 @@ directory inside deepdream as follows:
 
 ```
 #From your local machine
-scp "images/*jpg" root@1.2.3.4:~/clouddream/deepdream/inputs/
+scp images/*jpg root@1.2.3.4:~/clouddream/deepdream/inputs/
 ```
 
 ## Processing a YouTube video
@@ -179,7 +181,8 @@ Inside deepdream/settings.json you'll find a settings file that looks like this:
 ```
 
 You can change `maxwidth` to something larger like 1000 if you want
-big output images for big input images.  For testing `maxwidth` of 200
+big output images for big input images, remeber that will you need more RAM memory
+for processing lager images. For testing `maxwidth` of 200
 will give you results much faster.  If you change the settings and
 want to regenerate outputs for your input images, simply remove the
 contents of the outputs directory:
