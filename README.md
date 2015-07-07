@@ -313,9 +313,6 @@ in this demo. Note that the ReLU and Dropout layers are not valid for deepdreami
 "inception_5b/pool"
 "inception_5b/pool_proj"
 "inception_5b/output"
-"pool5/7x7_s1"
-"loss3/classifier"
-"prob"
 ```
 
 ### The GUI
