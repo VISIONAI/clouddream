@@ -102,9 +102,60 @@ From your local machine you can just scp images into the `inputs`
 directory inside deepdream as follows:
 
 ```
-#From your local machine
+# From your local machine
 scp images/*jpg root@1.2.3.4:~/clouddream/deepdream/inputs/
 ```
+
+## Instructions for Mac OS X and boot2docker
+
+First, install boot2docker.  Now start boot2docker.
+
+```
+boot2docker start
+```
+
+
+My boot2docker on Mac returns something like this:
+```
+Waiting for VM and Docker daemon to start...
+.............o
+Started.
+Writing /Users/tomasz/.boot2docker/certs/boot2docker-vm/ca.pem
+Writing /Users/tomasz/.boot2docker/certs/boot2docker-vm/cert.pem
+Writing /Users/tomasz/.boot2docker/certs/boot2docker-vm/key.pem
+
+To connect the Docker client to the Docker daemon, please set:
+    export DOCKER_TLS_VERIFY=1
+    export DOCKER_HOST=tcp://192.168.59.103:2376
+    export DOCKER_CERT_PATH=/Users/tomasz/.boot2docker/certs/boot2docker-vm
+```
+
+So I simply paste the last three lines (the ones starting with export)
+right into the terminal.
+```
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/tomasz/.boot2docker/certs/boot2docker-vm
+```
+
+Keep this IP address in mind. For me it is `192.168.59.103`.
+
+NOTE: if running a `docker ps` command fails at this point and it says
+something about certificates, you can try:
+```
+boot2docker ssh sudo /etc/init.d/docker restart
+```
+
+Now proceed just like you're in a Linux environment.
+
+```
+cd ~/projects
+git clone https://github.com/VISIONAI/clouddream.git
+cd clouddream
+./start.sh
+```
+
+You should now be able to visit `http://192.168.59.103` in your browser.
 
 ## Processing a YouTube video
 
