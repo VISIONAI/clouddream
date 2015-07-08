@@ -1,0 +1,4 @@
+FROM php:5.6-apache
+RUN apt-get update && apt-get install -y imagemagick
+RUN apt-get install -y php5-imagick
+RUN a2enmod headers

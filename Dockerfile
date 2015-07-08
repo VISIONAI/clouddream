@@ -1,5 +1,9 @@
 FROM ubuntu:14.04
 
+MAINTAINER Max Kaplan
+
+# A docker container with caffe (caffe.berkeleyvision.org) installed
+# in GPU mode.
 
 ENV PYTHONPATH /opt/caffe/python
 
@@ -45,7 +49,8 @@ RUN update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-4.6 30 && \
   update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 30 && \
   update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 30
 
-
+# Allow it to find CUDA libs
+RUN echo "/usr/local/cuda/lib64" > /etc/ld.so.conf.d/cuda.conf && ldconfig 
 
 # Clone the Caffe repo 
 RUN cd /opt && git clone https://github.com/BVLC/caffe.git
@@ -96,7 +101,8 @@ RUN ldconfig
 
 # Install python deps
 RUN cd /opt/caffe && \
-  (pip install -r python/requirements.txt)
+  (pip install -r python/requirements.txt; easy_install numpy; pip install -r python/requirements.txt) && \
+  easy_install pillow
 
 # Numpy include path hack - github.com/BVLC/caffe/wiki/Setting-up-Caffe-on-Ubuntu-14.04
 #RUN NUMPY_EGG=`ls /usr/local/lib/python2.7/dist-packages | grep -i numpy` && \
@@ -105,6 +111,7 @@ RUN cd /opt/caffe && \
 # Build Caffe python bindings
 RUN cd /opt/caffe && make pycaffe
 
+RUN bash -c 'echo "export PATH=/opt/caffe/.build_release/tools:\$PATH" >> ~/.bashrc' 
  
 # Make + run tests
 RUN cd /opt/caffe && make test && make runtest
