@@ -201,7 +201,7 @@ http://1.2.3.4/log.html
 
 You can view the current image being processed:
 ```
-http://1.2.3.4/image.jpg
+http://1.2.3.4/input.jpg
 ```
 
 You can view the current settings:
