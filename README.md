@@ -201,7 +201,7 @@ http://1.2.3.4/log.html
 
 You can view the current image being processed:
 ```
-http://1.2.3.4/input.jpg
+http://1.2.3.4/image.jpg
 ```
 
 You can view the current settings:
@@ -232,7 +232,7 @@ Inside deepdream/settings.json you'll find a settings file that looks like this:
 ```
 
 You can change `maxwidth` to something larger like 1000 if you want
-big output images for big input images, remeber that will you need more RAM memory
+big output images for big input images, remember that will you need more RAM memory
 for processing lager images. For testing `maxwidth` of 200
 will give you results much faster.  If you change the settings and
 want to regenerate outputs for your input images, simply remove the
@@ -365,6 +365,18 @@ in this demo. Note that the ReLU and Dropout layers are not valid for deepdreami
 "inception_5b/pool_proj"
 "inception_5b/output"
 ```
+
+Here's the full list of supported properties of `settings.json`:
+
+ Property Name | Default Value | Description
+---------------|:-------------:|-------------
+  maxwidth     | 400           | Maximum width in pixels of output images
+  iter_n       | 10            | Number of iterations of the "deepdream" function
+  octave_n     | 4             | Number of octaves
+  octave_scale | 1.4           | Scale of each octave
+  layer        | "inception_4c/output" | The network layer to optimize
+  step_size    | 1.5 | "make_step" parameter, step size
+  jitter       | 32 | how much to "jitter" the image before processing
 
 ### The GUI
 
