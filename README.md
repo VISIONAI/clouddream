@@ -29,7 +29,7 @@ users, the final image can be pulled down via:
 
 ```
 docker pull visionai/clouddream
-```
+``
 
 The docker image is 2.5GB, but it contains a precompiled version of
 Caffe, all of the python dependencies, as well as the pretrained
@@ -220,6 +220,16 @@ Additionally, you can browse some more cool images on the
 [deepdream.vision.ai](http://deepdream.vision.ai) server, which I've
 currently configured to run deepdream through some Dali art. When you
 go to the page, just hit refresh to see more goodies.
+
+### User contributed DeepDream images
+
+Several people ran their own experiments on different images and
+different layers. For example, @ihaventkilledanybodysince1984 shows an
+example of different layer effects on a frog drawing.
+
+![deepdream frog](http://i.imgur.com/z1jAHqZ.jpg)
+Check out the [frog face effect gallery on imgur](http://imgur.com/a/yMCGZ).
+
 
 ### Changing image size and processing layer
 
