@@ -29,7 +29,7 @@ users, the final image can be pulled down via:
 
 ```
 docker pull visionai/clouddream
-``
+```
 
 The docker image is 2.5GB, but it contains a precompiled version of
 Caffe, all of the python dependencies, as well as the pretrained
