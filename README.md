@@ -224,10 +224,12 @@ go to the page, just hit refresh to see more goodies.
 ### User contributed DeepDream images
 
 Several people ran their own experiments on different images and
-different layers. For example, @ihaventkilledanybodysince1984 shows an
-example of different layer effects on a frog drawing.
+different layers. For example, GitHub user
+[ihaventkilledanybodysince1984](https://github.com/ihaventkilledanybodysince1984)
+shows an example of different layer effects on a frog drawing.
 
 ![deepdream frog](http://i.imgur.com/z1jAHqZ.jpg)
+
 Check out the [frog face effect gallery on imgur](http://imgur.com/a/yMCGZ).
 
 
