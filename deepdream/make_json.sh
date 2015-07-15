@@ -14,6 +14,8 @@ make_json () {
 cd outputs
 
 rm ../temp.json 2>/dev/null
+touch ../temp.json
+chmod 644 ../temp.json
 echo -n "[" > ../temp.json
 
 nfiles=`find . -type f -not -path '*/\.*' | wc -l`
