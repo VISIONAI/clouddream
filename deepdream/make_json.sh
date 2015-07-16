@@ -26,7 +26,7 @@ find . -type f -not -path '*/\.*' -print0 | while read -d $'\0' f;
 do
     id=$counter
     name="$( basename "$f" )"
-    src="/outputs/$name"
+    src="/outputs/$f"
     echo -n "{\"id\":\"$id\",\"name\":\"$name\",\"src\":\"$src\"}" >> ../temp.json
     if [ "$id" != "$nfiles" ]; then
 	echo -n "," >> ../temp.json
