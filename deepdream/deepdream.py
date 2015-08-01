@@ -16,7 +16,7 @@ def showarray(a, fmt='jpeg'):
     display(Image(data=f.getvalue()))
 
 with open("settings.json") as json_file:
-    json_data = json.load(json_file)
+    settings = json.load(json_file)
     #print()
 
 
@@ -97,7 +97,7 @@ def deepdream(net, base_img, iter_n=10, octave_n=4, octave_scale=1.4, end='incep
     return deprocess(net, src.data[0])
 
 
-maxwidth = json_data['maxwidth']
+maxwidth = settings.get('maxwidth', 400)
 img = PIL.Image.open('input.jpg')
 width = img.size[0]
 
@@ -111,7 +111,13 @@ img = np.float32(img)
 frame = img
 #frame_i = 0
 
-frame = deepdream(net, frame, end=json_data['layer'])
+frame = deepdream(net, frame,
+                  iter_n       = settings.get('iter_n', 10),
+                  octave_n     = settings.get('octave_n', 4),
+                  octave_scale = settings.get('octave_scale', 1.4),
+                  end          = settings.get('layer', 'inception_4c/output'),
+                  step_size    = settings.get('step_size', 1.5),
+                  jitter       = settings.get('jitter', 32))
 #frame = deepdream(net, img, end='inception_3b/5x5_reduce')
 #frame = deepdream(net, img, end='conv2/3x3')
 
